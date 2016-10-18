@@ -70,16 +70,16 @@ import org.osgi.framework.Constants;
 /**
  * A CSpec builder that creates a cspec using the META-INF/MANIFEST.MF,
  * plugin.xml and fragment.xml files.
- * 
+ *
  * @author Thomas Hallgren
  */
 @SuppressWarnings("restriction")
 public class BundleBuilder extends PDEBuilder implements IBuildPropertiesConstants {
-	private static IPath platformPluginsFolder = Path.fromOSString(TargetPlatform.getPlatformInstallLocation().getAbsolutePath()).append(
-			IPDEConstants.PLUGINS_FOLDER);
+	private static IPath platformPluginsFolder = Path.fromOSString(TargetPlatform.getPlatformInstallLocation().getAbsolutePath())
+			.append(IPDEConstants.PLUGINS_FOLDER);
 
-	private static void loadModel(ICatalogReader reader, String file, final IModel model, IProgressMonitor monitor) throws CoreException,
-			FileNotFoundException {
+	private static void loadModel(ICatalogReader reader, String file, final IModel model, IProgressMonitor monitor)
+			throws CoreException, FileNotFoundException {
 		try {
 			reader.readFile(file, new IStreamConsumer<Object>() {
 				@Override
@@ -101,7 +101,7 @@ public class BundleBuilder extends PDEBuilder implements IBuildPropertiesConstan
 						throw BuckminsterException.wrap(e);
 					}
 					model.load(bld.getInputStream(), true);
-					return null;
+					return model;
 				}
 			}, monitor);
 		} catch (FileNotFoundException e) {
@@ -182,8 +182,8 @@ public class BundleBuilder extends PDEBuilder implements IBuildPropertiesConstan
 						if (bundleManifestVersion == null)
 							throw new FileNotFoundException(Messages.not_an_OSGi_manifest);
 
-						PDEPlugin.getLogger().warning(
-								NLS.bind(Messages.No_bundle_id_found_in_0, new File(reader.getLocation(), BUNDLE_FILE).getAbsolutePath()));
+						PDEPlugin.getLogger()
+								.warning(NLS.bind(Messages.No_bundle_id_found_in_0, new File(reader.getLocation(), BUNDLE_FILE).getAbsolutePath()));
 						bundle.setHeader(Constants.BUNDLE_SYMBOLICNAME, "<undefined bundle id>"); //$NON-NLS-1$
 					} else
 						bundle.setHeader(Constants.BUNDLE_SYMBOLICNAME, cName);

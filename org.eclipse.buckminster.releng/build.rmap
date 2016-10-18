@@ -3,15 +3,13 @@
   <rm:property key="eclipse.download.prefix" value="http://download.eclipse.org"/>
   <rm:property key="eclipse.svn.prefix" value="http://dev.eclipse.org/svnroot"/>
   <rm:property key="build.type" value="R"/>
-  <rm:property key="git.clone.dir" value="${user.home}/git"/>
+  <rm:property key="git.clone.dir" value="${user.home}/workspace"/>
   <rm:property key="buckminster.clone" value="buckminster"/>
   <rm:locator pattern="^org\.eclipse\.buckminster(\..+)?" searchPathRef="buckminster"/>
   <rm:locator pattern="^org\.eclipse\.jdt(\..+)?$" searchPathRef="platform"/>
   <rm:locator pattern="^org\.slf4j\.extendable$" searchPathRef="buckminster"/>
   <rm:locator pattern="^org\.eclipse\.equinox\.p2\.director\.(product|feature)$" searchPathRef="buckminster"/>
   <rm:locator pattern="^org\.eclipse\.egit\.fetchfactory(\..+)?$" searchPathRef="git.pde"/>
-<!-- <rm:locator pattern="^org\.eclipse\.[ej]git(\..+)?$" searchPathRef="git"/>  -->
-<!-- <rm:locator pattern="^javaewah$" searchPathRef="git"/>  -->
   <rm:locator pattern="^com\.mountainminds\.eclemma(\..+)?" searchPathRef="emma"/>
   <rm:locator pattern="^org\.jacoco(\..+)?" searchPathRef="emma"/>
   <rm:locator pattern="^org\.tigris\.subversion(\..+)?" searchPathRef="subclipse"/>
@@ -63,7 +61,7 @@
     <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
       <rm:property key="buckminster.source" value="false"/>
       <rm:property key="buckminster.mutable" value="false"/>
-      <rm:uri format="http://subclipse.tigris.org/update_1.12.x"/>
+      <rm:uri format="https://dl.bintray.com/subclipse/archive/release/1.12.x/"/>
     </rm:provider>
   </rm:searchPath>
   <rm:searchPath name="polarion">
@@ -73,15 +71,6 @@
       <rm:uri format="http://community.polarion.com/projects/subversive/download/eclipse/5.0/mars-site/"/>
     </rm:provider>
   </rm:searchPath>
-<!-- <rm:searchPath name="git">
-    <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
-      <rm:property key="buckminster.source" value="false"/>
-      <rm:property key="buckminster.mutable" value="false"/>
-      <rm:uri format="{0}/egit/updates-nightly">
-        <bc:propertyRef key="eclipse.download.prefix"/>
-      </rm:uri>
-    </rm:provider>
-  </rm:searchPath> -->
   <rm:searchPath name="git.pde">
     <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
       <rm:property key="buckminster.source" value="false"/>
